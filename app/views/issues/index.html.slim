@@ -1,0 +1,12 @@
+table.table.table-hover
+  - @issues.each do |issue|
+    tr
+      td
+        = link_to issue.url.html_safe do
+          => image_tag(avatar_url(issue.repository.owner_email, 20))
+          => "[#{issue.repository.name}]"
+          = "#{issue.name} ##{issue.number}"
+      td.text-right
+        = "#{time_ago_in_words(issue.created_at)} ago"
+
+.text-center = will_paginate @issues
